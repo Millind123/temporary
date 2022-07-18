@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <title>Online Judge</title>
+</head>
+<body>
+    <nav style="margin-bottom: 2%;"class="navbar navbar-expand-lg bg-light">
+        <div style="margin-left:5%; margin-right:5%;"class="container-fluid">
+          <a class="navbar-brand" href="#">Hii {{username}} !!</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+             
+            
+              <!-- <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Problemset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'submissionSet' %}">Submissions</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
+                </li>
+                <li class ="nav-item me-auto"  ><a class ="nav-link" href="{% url 'logout' %}"> LOGOUT </a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+   
+
+     
+        {% if submissionSet %}
+        <table style = "margin-left:10%;margin-right:10%;" class="table">
+            <thead >
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username </th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Language</th>
+                <th scope="col">Verdict</th>
+                <th scope="col">Link to Submission </th>
+              </tr>
+            </thead>
+            <tbody> 
+            {% for sub in submissionSet %}            
+                <tr>
+                    <th scope="row">{{sub.submission_ID}}</th>
+                    <td>{{sub.username}}</td>
+                    <td>{{sub.submission_date}}</td>
+                    <td>{{sub.submission_language}}</td>
+                    <td>{{sub}}</td>
+                    <td><a href = "/polls/submissionset/{{sub.submission_ID}}/"> view </a></td>
+                </tr>    
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </tbody>
+        </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>           
+</body>
+</html>
+
+<!--  -->
